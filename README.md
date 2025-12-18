@@ -54,6 +54,7 @@ After=network.target
 [Service]
 Type=simple
 User=martins
+Environment="USER=martins"
 WorkingDirectory=/home/martins/Programming/screen-unlock
 ExecStart=/home/martins/.local/share/pnpm/pnpm run start
 Restart=always
