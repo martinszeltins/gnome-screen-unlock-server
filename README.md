@@ -2,10 +2,12 @@
 
 This simple server script listens for HTTP requests to unlock the GNOME screen. Simply start the server and send a request with the correct token to unlock the screen. Tested on Ubuntu 20.4 - Ubuntu 25.10
 
-_Note: Add your token to the `.env` file before starting the server._
+_Note: Add your port, host and token to the `.env` file before starting the server._
 
 ```bash
 # .env
+PORT=1234
+HOST=192.168.1.10
 TOKEN=YOUR_SECRET_TOKEN_HERE
 ```
 

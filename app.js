@@ -2,7 +2,8 @@ import 'dotenv/config'
 import { H3, getQuery, serve } from 'h3'
 import { exec } from 'node:child_process'
 
-const PORT = 3000
+const PORT = process.env.PORT
+const HOST = process.env.HOST
 const TOKEN = process.env.TOKEN
 
 const app = new H3()
@@ -21,4 +22,4 @@ app.get('/unlock', (event) => {
     return
 })
 
-serve(app, { port: PORT, hostname: '0.0.0.0' })
+serve(app, { port: PORT, hostname: HOST })
