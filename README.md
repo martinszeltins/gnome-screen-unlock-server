@@ -27,3 +27,50 @@ $ pnpm start
 # Send unlock request
 $ curl "http://localhost:3000/unlock?token=YOUR_SECRET_TOKEN_HERE"
 ```
+
+### Lock screen
+
+```bash
+# Send lock request
+$ curl "http://localhost:3000/lock?token=YOUR_SECRET_TOKEN_HERE"
+```
+
+## Install as systemd service
+
+1. Create a new `.service` file in `/etc/systemd/system` and give it correct permissions.
+
+```bash
+sudo touch /etc/systemd/system/http-gnome-screen-lock-server.service
+sudo chmod 644 /etc/systemd/system/http-gnome-screen-lock-server.service
+```
+
+2. Add this content to `http-gnome-screen-lock-server.service`
+
+````
+[Unit]
+Description=HTTP GNOME Screen Lock/Unlock Service
+After=network.target
+
+[Service]
+Type=simple
+User=martins
+WorkingDirectory=/home/martins/Programming/screen-unlock
+ExecStart=/home/martins/.local/share/pnpm/pnpm run start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+````
+
+3. Reload systemd services and enable the new service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now http-gnome-screen-lock-server.service
+```
+
+You can see the stdout/stderr using systemd's `journalctl`
+
+```bash
+sudo journalctl -u http-gnome-screen-lock-server.service -f
+```

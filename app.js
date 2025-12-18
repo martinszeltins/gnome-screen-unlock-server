@@ -8,6 +8,20 @@ const TOKEN = process.env.TOKEN
 
 const app = new H3()
 
+app.get('/lock', (event) => {
+    const { token } = getQuery(event)
+
+    if (token !== TOKEN) return
+
+    exec('loginctl lock-session', error => {
+        if (error) {
+            console.error(error)
+        }
+    })
+
+    return
+})
+
 app.get('/unlock', (event) => {
     const { token } = getQuery(event)
 
