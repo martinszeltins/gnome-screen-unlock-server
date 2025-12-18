@@ -4,6 +4,11 @@ This simple server script listens for HTTP requests to unlock the GNOME screen. 
 
 _Note: Add your token to the `.env` file before starting the server._
 
+```bash
+# .env
+TOKEN=YOUR_SECRET_TOKEN_HERE
+```
+
 ### Example
 
 ```bash
@@ -12,5 +17,5 @@ $ pnpm start
 ➜ Listening on: http://localhost:3000/ (all interfaces)
 
 # Send unlock request
-$ curl "http://localhost:3000/unlock?token=fD4s8Kj2lPOm56zeRNT3p"
+$ curl "http://localhost:3000/unlock?token=YOUR_SECRET_TOKEN_HERE"
 ```
